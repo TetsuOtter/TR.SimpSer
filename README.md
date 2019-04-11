@@ -23,14 +23,14 @@ TR.SimpSer.[DataName].[PortNum].[BaudRate].dll
 -- 例えば、intであれば"100"などと、整数がstringで送られます。
 -- floatやdoubleであれば"100.0"などと、小数がstringで送られてくると思います。
 -- boolであれば"0"もしくは"1"がstringで送信されると思います。
--- StrArrでは、','区切りのデータ群が送られてきます。詳細は実装を読んで理解してください。
+-- byteは情報群のbyte配列です。サポート範囲外なので、注意して使用してください。
 - 誤ったDataNameを指定すると、エラーを吐くと思います。
 
 #### DataName一覧表
 |DataName|名称|送信形式|備考|
 |----|----|----|----|
 |SPDf|現在速度|float|単位は"km/h"|
-|STTa|列車状態|StrArr|サポート範囲外|
+|STTb|列車状態|byte|サポート範囲外|
 
 ### PortNum
 PortNumは、このプラグインが開くポート番号です。数字のみを設定してください。  

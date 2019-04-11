@@ -36,5 +36,5 @@ DataNumは、DataNameと対応した数字です。以下に対応表を置い�
 |----|----|----|
 |0|(string.Empty)|シリアル通信は行われません。  
 但し、他の変数の有効性チェックは行われます。|
-|901|STTa|stringのカンマ区切りarray|
+|901|STTb|ByteArray|
 |903|SPDf|現在速度(float)|

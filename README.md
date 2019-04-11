@@ -11,7 +11,9 @@ BIDSよりも単純で高速ですが、一部の方にとっては使いづら�
 非常に単純で、機器を接続し、デバイスマネージャー等でCOMポートを確認したのちに、そのポート番号と使用するBaudRate、送信する情報をファイル名に含めるだけです。
 
 ファイル名の書式は以下の通りです。  
-~~~TR.SimpSer.[DataName].[PortNum].[BaudRate].dll~~~
+~~~
+TR.SimpSer.[DataName].[PortNum].[BaudRate].dll
+~~~
 
 ### DataName
 #### 注意事項
@@ -27,7 +29,8 @@ BIDSよりも単純で高速ですが、一部の方にとっては使いづら�
 
 #### DataName一覧表
 |DataName|名称|送信形式|備考|
-|SPDf|現在速度[km/h]|float||
+|----|----|----|----|
+|SPDf|現在速度|float|単位は"km/h"|
 |STTb|列車状態|byte|サポート範囲外|
 
 ### PortNum

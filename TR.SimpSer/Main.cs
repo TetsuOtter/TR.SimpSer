@@ -39,6 +39,9 @@ namespace TR.SimpSer
     const int ElapseMin = 901;
     const int ElapseMax = 2155;
 
+    static readonly string IntForm = "D";
+    static readonly string FloatForm = "F4";
+    static readonly string DoubleForm = "F6";
 
     static internal void Load()
     {
@@ -101,14 +104,24 @@ namespace TR.SimpSer
         SP = new SerialPort()
         {
           BaudRate = BaudRateNum,
-          PortName = "COM" + PortNum.ToString()
+          PortName = "COM" + PortNum.ToString(),
+          NewLine = "\n",
+          DtrEnable = true,
+          RtsEnable = true
         };
       }catch(Exception e)//SerialPort開けなかった
       {
-        MessageBox.Show("ERR05 : SerialPort Opening Error\n\nError message\n" + e.Message, "SimpSer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show("ERR05 : SerialPort Setup Error\n\nError message\n" + e.Message, "SimpSer", MessageBoxButtons.OK, MessageBoxIcon.Error);
         return;
       }
       if (SP == null) { MessageBox.Show("ERR06 : SerialPort Opening Error\nValue is NULL.", "SimpSer", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+      try
+      {
+        SP.Open();
+      }catch(Exception e)
+      {
+        MessageBox.Show("ERR09 : SerialPort Opening Error\n\nError message\n" + e.Message, "SimpSer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
       if (!SP.IsOpen) { MessageBox.Show("ERR07 : SerialPort is Closed.", "SimpSer", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
     }
 
@@ -121,6 +134,10 @@ namespace TR.SimpSer
         default:return 0;
       }
     }
+
+    static private string toString(this int i) => i.ToString(IntForm);
+    static private string toString(this float f) => f.ToString(FloatForm);
+    static private string toString(this double d) => d.ToString(DoubleForm);
 
     static internal void Dispose()
     {
@@ -154,7 +171,7 @@ namespace TR.SimpSer
             SP?.Write(ba,0,sz);
             break;
           case 903:
-            SP?.WriteLine(st.V.ToString());
+            SP?.Write(st.V.toString());
             break;
         }
       }

@@ -46,7 +46,9 @@ namespace TR.SimpSer
       MessageBox.Show("PITempCS Debug Build");//If you don't need, please remove it.
 #endif
       //ファイル名読む
-      string FileNameStr = typeof(Ats).Assembly.FullName;
+      //DLL情報Getして位置GetしてFolderごとSplitしてそのLast(DLL名)をGet
+      //Refer : http://d.hatena.ne.jp/tekk/20110307/1299513821
+      string FileNameStr = Assembly.GetExecutingAssembly().Location.Split('\\').Last();
       string[] FileNameStrArr = FileNameStr.Split('.');
       if (FileNameStrArr[0] != "TR" || FileNameStrArr[1] != "SimpSer")//書式エラー
       {
@@ -92,7 +94,7 @@ namespace TR.SimpSer
         MessageBox.Show("ERR08 : Int.Parse Error in DataName/Num\n\nError message\n" + e.Message, "SimpSer", MessageBoxButtons.OK, MessageBoxIcon.Error);
         return;
       }
-
+      if (DataNum == 0) return;
       //シリアル開く
       try
       {

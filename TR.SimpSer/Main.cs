@@ -162,20 +162,35 @@ namespace TR.SimpSer
         {
           case 901:
             //Refer : http://note.websmil.com/csharp/c-%E6%A7%8B%E9%80%A0%E4%BD%93%E3%81%A8%E3%83%90%E3%82%A4%E3%83%88%E9%85%8D%E5%88%97%EF%BC%88byte%EF%BC%89%E3%81%AE%E5%A4%89%E6%8F%9B
-            int sz = Marshal.SizeOf(st);
-            byte[] ba = new byte[sz];
+            byte[] ba = new byte[Marshal.SizeOf(st)];
             fixed(byte* pb = ba)
             {
               *(State*)pb = st;
             }
-            SP?.Write(ba,0,sz);
+            SlW(ba);
+            break;
+          case 902:
+            SlW(((int)st.V).toString());
             break;
           case 903:
-            SP?.Write(st.V.toString());
+            SlW(st.V.toString());
+            break;
+          case 904:
+            SlW(st.Z.toString());
+            break;
+          case 905:
+            SlW(st.T.toString());
+            break;
+          case 906:
+            //時刻標準形式
+            break;
+          case 907:
             break;
         }
       }
     }
+    static private void SlW(string s) => SP?.Write(s);
+    static private void SlW(byte[] b) => SP?.Write(b, 0, b.Length * sizeof(byte));
 
     static internal void SetPower(int p)
     {

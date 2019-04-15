@@ -37,4 +37,21 @@ DataNumは、DataNameと対応した数字です。以下に対応表を置い�
 |0|(string.Empty)|シリアル通信は行われません。  
 但し、他の変数の有効性チェックは行われます。|
 |901|STTb|ByteArray|
+|902|SPDi|現在速度(int)|
 |903|SPDf|現在速度(float)|
+|904|LOCd|現在位置(double)|
+|905|TMEi|現在時刻(ms 整数)|
+|906|TMEt|現在時刻(時刻標準形式 HH:MM:SS.MS)|
+|907|BCPi|BC圧(整数)|
+|908|BCPf|BC圧(float)|
+|909|MRPi|MR圧(整数)|
+|910|MRPf|MR圧(float)|
+|911|ERPi|ER圧(int)|
+|912|ERPf|ER Pressure(float)|
+|913|BPPi|BP Pressure(int)|
+|914|BPPf|BP Pressure(float)|
+|915|SAPi|SAP Pressure(int)|
+|916|SAPf|SAP Pressure(float)|
+|917|CURi|Current(int)|
+|918|CURf|Current(float)|
+なお、整数(int)は整数値で、floatは小数点以下第4位まで、doubleは小数点以下第6位まで送信します。
